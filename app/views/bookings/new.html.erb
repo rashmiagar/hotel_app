@@ -1,0 +1,36 @@
+<h2>New Reservation</h2>
+
+<style type="text/css">
+  .panel {
+    background-color: #f2f5f9;
+    color: #003580;
+  }
+</style>
+
+<div class="panel">
+  <div class="panel-body">
+    <%= form_tag check_availability_bookings_path, remote:true do %>
+      <%=label_tag 'CheckIn'%>
+      <%=text_field_tag 'checkin' %>
+      <%=label_tag 'CheckOut'%>
+      <%= text_field_tag 'checkout' %>
+      <div >
+        <%=label_tag 'Room Type' %>
+        <%=select_tag 'room_type', options_for_select(['', 'Deluxe', 'Luxury', ['Luxury Suite', 'LS'], ['Presidential Suite', 'PS']]) %>
+      </div>
+      <%=submit_tag 'Find Availability', class: 'btn btn-primary availability_btn'%>
+    <% end %>
+  </div>
+</div>
+
+
+<div id="results_pane">
+</div>
+
+<script>
+$(function(){
+  today = new Date();
+	$('#checkin').datepicker({dateFormat: 'dd-mm-yy', minDate: new Date(), maxDate: "+6M"});
+	$('#checkout').datepicker({dateFormat: 'dd-mm-yy', minDate: new Date(),maxDate: "+6M"});
+});
+</script>

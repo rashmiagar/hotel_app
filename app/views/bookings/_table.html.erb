@@ -1,0 +1,52 @@
+<%= form_tag reserve_bookings_path, remote:true do %>
+<%=hidden_field_tag :checkin, params[:checkin] %>
+<%=hidden_field_tag :checkout, params[:checkout] %>
+<table class="table table-bordered">
+  <thead>
+    <th>Room Type</th>
+    <th>Amenities</th>
+    <th>Price per night</th>
+    <th>Select rooms</th>
+    <th>Reservation</th>
+  </thead>
+  <tbody>
+
+    <% size = @rooms.where(room_type: "Deluxe").all.size %>
+    <% if size > 0 %>
+      <tr>
+        <td><span><b>Deluxe Rooms</b></span></td>
+        <td>Queen Size Bed</td>
+        <td>Rs. 7000</td>        
+        <td><%=select_tag "no_rooms_deluxe", options_for_select((0..size).zip.flatten) %></td>
+      </tr>
+    <% end %>
+    <% size = @rooms.where(room_type: "Luxury").all.size
+     if size > 0 %>
+      <tr>
+        <td><span><b>Luxury Rooms</b></span></td>
+        <td>Queen Size Bed and Pool Facing</td>
+        <td>Rs. 8500</td>
+        <td><%=select_tag "no_rooms_luxury", options_for_select((0..size).zip.flatten) %></td>
+      </tr>
+    <% end %>
+    <% size = @rooms.where(room_type: "LS").all.size
+      if size > 0 %>
+      <tr>
+        <td><span><b>Luxury Suites</b></span></td>
+        <td>King Size Bed and Pool Facing</td>
+        <td>Rs. 12000</td>
+        <td><%=select_tag "no_rooms_ls", options_for_select((0..size).zip.flatten) %></td>
+      </tr>
+    <% end %>
+    <% size = @rooms.where(room_type: "PS").all.size
+    if size > 0 %>
+      <tr>
+        <td><span><b>Presidential Suites</b></span></td>
+        <td>King Size Bed, Pool Facing with a Gym</td>
+        <td>Rs. 20000</td>
+        <td><%=select_tag "no_rooms_ps", options_for_select((0..size).zip.flatten) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

@@ -1,0 +1,16 @@
+<%= link_to "Make a reservation", new_booking_path %>
+
+<table class="table table-bordered">
+	<thead>
+		<th>Dates</th>
+		<th>Rooms</th>
+	</thead>
+	<tbody>
+		<% for booking in @bookings %>
+		<tr>
+			<td><%= booking.start_date%> - <%= booking.end_date%></td>
+			<td><span><%=@rooms[booking.id].join(",")%></span></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

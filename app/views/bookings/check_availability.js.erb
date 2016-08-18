@@ -1,0 +1,2 @@
+$('#results_pane').html("<%= j(render 'bookings/table', locals: {checkin: @checkin,checkout: @checkout }) %>");
+$('#results_pane tbody > tr:nth-child(1)').append("<td><%= j(submit_tag 'Reserve') %></td>");
